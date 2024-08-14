@@ -2,7 +2,7 @@ const { Sequelize, DataTypes, Model, } = require('sequelize');
 
 const sequelize = new Sequelize('employeedb', 'root', 'root', {
     host: 'localhost',
-    logging: false,
+    logging: true,
     dialect: 'mysql'/*mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
   });
 
@@ -25,8 +25,8 @@ db.userContacts = require('./userContacts')(sequelize,DataTypes,db.user,db.conta
 // db.user.hasMany(db.contact,{foreignKey: 'user_id',as:'contactDetails'});
 // db.contact.belongsTo(db.user,{foreignKey: 'user_id',as:'userDetails'});
 
-db.user.belongsToMany(db.contact, { through: db.userContacts });
-db.contact.belongsToMany(db.user, { through: db.userContacts });
+// // db.user.belongsToMany(db.contact, { through: db.userContacts });
+// // db.contact.belongsToMany(db.user, { through: db.userContacts });
 
-db.sequelize.sync({ force: false });
-module.exports=db;
+// db.sequelize.sync({ force: true });
+// module.exports=db;

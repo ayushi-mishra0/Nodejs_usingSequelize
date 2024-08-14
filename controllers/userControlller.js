@@ -162,32 +162,32 @@ var rawQueriesUser = async (req, res) =>{
 }
 
 var oneToOneUser = async (req, res) =>{
-    // var data = await User.create({firstName:'gurmeet', lastName:'singh'})
-    // if(data && data.id){
-    //     await Contact.create({permanent_address:'abc', current_address:'xyz',
-    //         'user_id':data.id
-    //     })
-    // }
-    // var data = await User.findAll({
-    //     attributes: ['firstName','lastName'],
-    //     include:[{
-    //         model:Contact,
-    //         as: 'contactDetails',
-    //         attributes:['permanent_address','current_address']
-    //     }],
-    //     where:{id:2}
-    // })
-    // res.status(200).json({data:data});
-    var data = await Contact.findAll({
-        attributes: ['permanent_address','current_address']['firstName','lastName'],
+    var data = await User.create({firstName:'gurpreet', lastName:'singh'})
+    if(data && data.id){
+        await Contact.create({permanent_address:'abc', current_address:'xyz',
+            'user_id':data.id
+        })
+    }
+    var data = await User.findAll({
+        attributes: ['firstName','lastName'],
         include:[{
-            model:User,
-            as: 'userDetails',
-            attributes:['firstName','lastName']
+            model:Contact,
+            as: 'contactDetails',
+            attributes:['permanent_address','current_address']
         }],
         where:{id:2}
     })
     res.status(200).json({data:data});
+    // var data = await Contact.findAll({
+    //     attributes: ['permanent_address','current_address']['firstName','lastName'],
+    //     include:[{
+    //         model:User,
+    //         as: 'userDetails',
+    //         attributes:['firstName','lastName']
+    //     }],
+    //     where:{id:2}
+    // })
+    // res.status(200).json({data:data});
 }
 var oneToManyUser = async (req,res)=>{
     // await Contact.create({permanent_address:'Gurugram', current_address:'Merath',
